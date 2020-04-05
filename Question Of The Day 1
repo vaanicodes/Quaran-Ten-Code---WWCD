@@ -1,0 +1,25 @@
+int closestSum(int steps[], int numOfSteps, int X){
+    if( numOfSteps == 3){
+        return steps[0]+steps[1]+steps[2];
+    }
+
+    int smallAns = closestSum( steps+1, numOfSteps-1, X);
+
+
+    for(int i = 1; i < numOfSteps; i++){
+        int newSum = smallAns - steps[i] + steps[0];
+        int diff = smallAns - X;
+        if(diff < 0){
+        diff = diff*(-1);
+        }
+        int diff1 = newSum - X;
+        if(diff1 < 0) {
+            diff1 = diff1*(-1);
+        }
+        if( diff1 < diff){
+            smallAns = newSum;
+        }
+    }
+    return smallAns;
+
+}
